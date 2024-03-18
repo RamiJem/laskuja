@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-auto;
+    max-width: 100%;
+    @apply bg-white text-gray-900; /* White background with black text */
+  }
+
+  h1, p {
+    @apply text-gray-900; /* Ensuring all text elements are black for consistency */
+  }
+
+  input[type="text"] {
+    @apply text-gray-900  border-gray-200 rounded focus:border-gray-400 focus:outline-none focus:ring-0/* Ensuring input text and focus border are black for consistency */
+  }
+  button {
+    @apply mt-4 px-5 py-2  text-gray-900 rounded-lg shadow ; /* Beige button with a darker beige on hover */
+  }
+
+  p {
+    @apply mt-4; /* "Oikein x/20" text in green for visibility */
+  }
+}
