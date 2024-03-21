@@ -80,7 +80,7 @@ export default function PageFive() {
         <button type="submit" className={`mt-4 px-4 py-2 ${buttonColor}`}>Palauta</button>
       </form>
 
-      <p className="absolute top-0 left-0 m-4">Oikein: {correctAnswers}/20</p>
+
     </div>
     </>
   );

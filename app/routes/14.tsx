@@ -5,6 +5,7 @@ export default function PageFourteen() {
   const [nextElement, setNextElement] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [buttonColor, setButtonColor] = useState('');
 
   useEffect(() => {
     generateSequence();
@@ -32,18 +33,28 @@ export default function PageFourteen() {
   
     setSequence(generatedSequence);
   };
+  const [timeoutId, setTimeoutId] = useState(null);
 
   const handleAnswer = (event) => {
     event.preventDefault();
 
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      
     if (userAnswer === nextElement) {
+        setButtonColor('bg-green-500/50'); // Correct answer
         setCorrectAnswers(correctAnswers + 1);
         if (correctAnswers === 20) {
             localStorage.setItem('laskut-task-14', 'True');
           }
     } else {
+        setButtonColor('bg-red-500/50'); // Incorrect answer
         setCorrectAnswers(Math.max(0, correctAnswers - 4));
     }
+
+    const newTimeoutId = setTimeout(() => setButtonColor(''), 500);
+    setTimeoutId(newTimeoutId);
 
     setUserAnswer(''); // Reset input field
     generateSequence(); // Generate a new sequence
@@ -65,7 +76,7 @@ export default function PageFourteen() {
           className="text-center p-2 border-2 border-gray-200 rounded focus:border-gray-400"
           placeholder="Seuraava jäsen"
         />
-        <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button type="submit" className={`mt-4 px-4 py-2 ${buttonColor}`}>
           Palauta
         </button>
       </form>
