@@ -44,14 +44,18 @@ export default function PageTwo() {
       }
     } else {
       setButtonColor('bg-red-500/50'); // Set button color to red if the answer is incorrect
-      setCorrectAnswers(0); // Reset correct answers if the answer is wrong
+      setCorrectAnswers(Math.max(0, correctAnswers - 4)); // Reset correct answers if the answer is wrong
     }
     setCurrentQuestion(currentQuestion + 1);
     setUserAnswer(''); // Reset input field
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <>
+    <div className={`sticky-top ${correctAnswers >= 20 ? 'bg-green-200' : 'bg-gray-300/40'}`} >
+        Oikein: {correctAnswers}/20
+      </div>
+  <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="text-5xl mb-4">{question}</h1>
       <form onSubmit={handleAnswer} className="flex flex-col items-center">
         <input
@@ -64,7 +68,9 @@ export default function PageTwo() {
         <button type="submit" className={`mt-4 px-4 py-2 ${buttonColor}`}>Palauta</button>
       </form>
 
-      <p className="absolute top-0 left-0 m-4">Oikein: {correctAnswers}/20</p>
+
     </div>
+    </>
+    
   );
 }

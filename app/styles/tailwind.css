@@ -24,3 +24,16 @@
     @apply mt-4; /* "Oikein x/20" text in green for visibility */
   }
 }
+
+.sticky-top {
+  @apply text-lg;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 0px;
+  text-align: center;
+
+}
