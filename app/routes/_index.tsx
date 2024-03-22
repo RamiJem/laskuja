@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
-const tasks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
+const tasks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
 
 export default function Index() {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -150,6 +150,13 @@ export default function Index() {
           className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-14'] ? "bg-green-200" : "bg-white shadow-xl"}`}
         >
           14
+        </Link>
+        <Link
+          key="15"
+          to="/15"
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-15'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+        >
+          15
         </Link>
       </div>
     </div>
