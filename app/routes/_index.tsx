@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
-const tasks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"];
+const tasks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
 
 export default function Index() {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -164,6 +164,27 @@ export default function Index() {
           className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-16'] ? "bg-green-200" : "bg-white shadow-xl"}`}
         >
           16
+        </Link>
+        <Link
+          key="17"
+          to="/17"
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-17'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+        >
+          17
+        </Link>
+        <Link
+          key="18"
+          to="/18"
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-18'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+        >
+          18
+        </Link>
+        <Link
+          key="19"
+          to="/19"
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-19'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+        >
+          19
         </Link>
       </div>
     </div>

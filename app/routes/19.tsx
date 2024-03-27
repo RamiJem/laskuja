@@ -50,6 +50,10 @@ export default function PageEighteen() {
     if (userAnswer.trim() === answer.trim()) {
       setButtonColor('bg-green-500/50'); // Correct answer
       setCorrectAnswers(correctAnswers + 1);
+
+      if (correctAnswers === 25) {
+        localStorage.setItem('laskut-task-19', 'True');
+      }
       setCurrentQuestion(currentQuestion + 1);
       setUserAnswer(''); // Reset input field
       generateQuestion(); // Generate a new question
@@ -62,8 +66,8 @@ export default function PageEighteen() {
 
   return (
     <>
-      <div className={`sticky-top ${correctAnswers >= 20 ? 'bg-green-200' : 'bg-gray-300/40'}`}>
-        Oikein: {correctAnswers}/20
+      <div className={`sticky-top ${correctAnswers >= 25 ? 'bg-green-200' : 'bg-gray-300/40'}`}>
+        Oikein: {correctAnswers}/25
       </div>
       <div className="flex flex-col justify-center items-center h-screen">
         <h1 className="text-5xl mb-4">{question}</h1>
