@@ -11,7 +11,7 @@ export default function PageThirteen() {
 
   const generateSequence = () => {
     const start = Math.floor(Math.random() * 5) + 1; // Random start from 1 to 5
-    const ratio = Math.floor(Math.random() * 5) + 1; // Random ratio from 1 to 5
+    const ratio = Math.floor(Math.random() * 3) + 1; // Random ratio from 1 to 5
     const randomSequence = [start, start * ratio, start * ratio * ratio];
 
     // Randomly decide to make it non-geometric by altering the second number
