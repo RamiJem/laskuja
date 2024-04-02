@@ -27,14 +27,16 @@ export default function PageThirteen() {
 
   const handleAnswer = (isYes) => {
     if (isYes === isGeometric) {
-      setCorrectAnswers(correctAnswers + 1);
-      if (correctAnswers === 20) {
+
+      if (correctAnswers + 1 === 20) {
         localStorage.setItem('laskut-task-13', 'True');
       }
+      setCorrectAnswers(correctAnswers + 1);
+      generateSequence();
     } else {
-        setCorrectAnswers(Math.max(0, correctAnswers - 4));
+        setCorrectAnswers(Math.max(0, correctAnswers - 1));
     }
-    generateSequence();
+    
   };
 
   return (

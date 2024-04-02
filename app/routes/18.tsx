@@ -7,6 +7,8 @@ export default function PageEighteen() {
   const [buttonColor, setButtonColor] = useState('');
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [questionDetails, setQuestionDetails] = useState({  num1: 0, num2: 0, num3: 0 });
+
 
   useEffect(() => {
     generateQuestion();
@@ -20,9 +22,9 @@ export default function PageEighteen() {
 
   const generateQuestion = () => {
     // Generate the numbers for the operation
-    const num1 = getRandomInt(-10, 10); // For multiplication
-    const num2 = getRandomInt(-10, 10); // For multiplication
-    const num3 = getRandomInt(1, 50);   // To be added to the product
+    let num1 = getRandomInt(-10, 10); // For multiplication
+    let num2 = getRandomInt(-10, 10); // For multiplication
+    let num3 = getRandomInt(1, 10);   // To be added to the product
 
     // Calculate the product of the first two numbers
     const product = num1 * num2;
@@ -34,6 +36,9 @@ export default function PageEighteen() {
 
     setQuestion(question);
     setAnswer(String(finalResult));
+
+    num2 = num2 < 0 ? "(" + num2 + ")" : num2;
+    setQuestionDetails({ num1, num2, num3 });
   };
 
   const handleAnswer = (event: React.FormEvent<HTMLFormElement>) => {
@@ -48,7 +53,9 @@ export default function PageEighteen() {
       setUserAnswer(''); // Reset input field
       generateQuestion(); // Generate a new question
     } else {
+      setCorrectAnswers(Math.max(0, correctAnswers - 1));
       setButtonColor('bg-red-500/50'); // Incorrect answer
+      setUserAnswer(questionDetails.num1 + " · " + questionDetails.num2 + "+" + questionDetails.num3);
       setTimeout(() => setButtonColor(''), 500); // Reset color after 0.5 seconds
       // Do not advance to the next question
     }

@@ -7,6 +7,8 @@ export default function PageEighteen() {
   const [buttonColor, setButtonColor] = useState('');
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [questionDetails, setQuestionDetails] = useState({ questionType: '', num1: 0, num2: 0, num3: 0 });
+
 
   useEffect(() => {
     generateQuestion();
@@ -44,23 +46,37 @@ export default function PageEighteen() {
   
     setQuestion(newQuestion);
     setAnswer(String(finalResult));
+    // if num2 < 0 let's put parentheses around it
+    num2 = num2 < 0 ? "(" + num2 + ")" : num2;
+    setQuestionDetails({ questionType, num1, num2, num3 });
+
   };
   const handleAnswer = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userAnswer.trim() === answer.trim()) {
       setButtonColor('bg-green-500/50'); // Correct answer
       setCorrectAnswers(correctAnswers + 1);
-
+  
       if (correctAnswers === 25) {
         localStorage.setItem('laskut-task-19', 'True');
       }
       setCurrentQuestion(currentQuestion + 1);
       setUserAnswer(''); // Reset input field
-      generateQuestion(); // Generate a new question
+      // Delay before generating a new question
+      generateQuestion()
     } else {
       setButtonColor('bg-red-500/50'); // Incorrect answer
-      // Do not advance to the next question
-      setTimeout(() => setButtonColor(''), 500);
+      // Show the correct answer
+      setCorrectAnswers(correctAnswers - 1);
+      if (questionDetails.questionType === 'addition')
+        setUserAnswer(questionDetails.num1 + " · " + questionDetails.num2 + "+" + questionDetails.num3);
+      else
+        setUserAnswer(questionDetails.num1 + " · " + questionDetails.num2 + "-" + questionDetails.num3);
+      // Delay before resetting the button color and input field
+      setTimeout(() => {
+        setButtonColor('');
+
+      }, 500); // Adjust the delay as needed
     }
   };
 

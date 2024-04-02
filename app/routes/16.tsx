@@ -8,6 +8,8 @@ export default function PageThree() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [currentOperation, setCurrentOperation] = useState({ op: '', method: (a: number, b: number) => 0, word: '' }); // Add this line
+  const [questionDetails, setQuestionDetails] = useState({  op: '', num1: 0, num2: 0 });
+
 
   useEffect(() => {
     generateQuestion();
@@ -38,6 +40,13 @@ export default function PageThree() {
     const [num1, num2] = operation.nums;
     const newQuestion = `lukujen ${num1} ja ${num2} ${operation.word}`;
     let newAnswer = String(operation.method(num1, num2));
+    let opp = operation.op;
+    if (operation.op === "*"){
+       opp = "·"
+    } else if (operation.op === "/") {
+        opp = ":"
+    }
+    setQuestionDetails({ op: opp, num1: num1, num2: num2 });
 
     setQuestion(newQuestion);
     setAnswer(newAnswer);
@@ -59,7 +68,21 @@ export default function PageThree() {
       setCorrectAnswers(newCorrectAnswers);
       
     } else {
+        //  · 
       setButtonColor('bg-red-500/50'); // Incorrect answer
+      setCorrectAnswers(Math.max(0,correctAnswers - 1));
+      if(questionDetails.num2 < 0) {
+       
+         setUserAnswer(questionDetails.num1 + questionDetails.op + "(" + questionDetails.num2 + ")");
+
+        // setUserAnswer(questionDetails.num1 + questionDetails.op + "(" + questionDetails.num2 + ")");
+      } else {
+        setUserAnswer(questionDetails.num1 + questionDetails.op + questionDetails.num2);
+        
+      }
+      setTimeout(() => {
+        setButtonColor('');
+      }, 500);
       // Do not advance to the next question
       return;
     }
