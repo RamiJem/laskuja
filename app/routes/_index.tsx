@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
-const tasks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+const tasks = ["muunnoksia", "muunnoksia2"];
 
 export default function Index() {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -38,6 +38,7 @@ export default function Index() {
     const handleStorageChange = () => {
       const completionStatus = {};
       tasks.forEach(task => {
+        console.log("task: ", task)
         const isCompleted = localStorage.getItem(`laskut-task-${task}`) === 'True';
         completionStatus[`laskut-task-${task}`] = isCompleted;
       });
@@ -53,7 +54,14 @@ export default function Index() {
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-2 gap-4 p-4">
-        <Link
+      <Link
+          key="muunnoksia"
+          to="/muunnoksia"
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-muunnoksia'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+        >
+          1
+        </Link>
+        {/* <Link
           key="1"
           to="/1"
           className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-1'] ? "bg-green-200" : "bg-white shadow-xl"}`}
@@ -213,7 +221,7 @@ export default function Index() {
           className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-23'] ? "bg-green-200" : "bg-white shadow-xl"}`}
         >
           23
-        </Link>
+        </Link> */}
       </div>
     </div>
   )
