@@ -60,7 +60,7 @@ export default function AngleQuestionPage() {
         
       }
       if (correctAnswers + 1 === 25) {
-        localStorage.setItem('laskut-task-kulmia', 'true');
+        localStorage.setItem('laskut-task-kulmia', 'True');
       }
      
     } else {

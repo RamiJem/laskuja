@@ -32,8 +32,8 @@ export default function AngleQuestionPage() {
             setCorrectAnswers(Math.min(25, correctAnswers + 1)); 
         }, 200)
       }
-      if (correctAnswers + 1 === 2) {
-        localStorage.setItem('laskut-task-kulmia2', 'true');
+      if (correctAnswers + 1 === 25) {
+        localStorage.setItem('laskut-task-kulmia2', 'True');
       }
     } else {
         const button = document.getElementById(`angle-${selectedAngle}`);

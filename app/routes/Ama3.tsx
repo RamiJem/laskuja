@@ -20,11 +20,16 @@ export default function Index() {
   const [taskCompletionStatus, setTaskCompletionStatus] = useState({});
 
   useEffect(() => {
+    console.log("running")
     // This code runs on the client side only
     const completionStatus = {};
     tasks.forEach(task => {
       // Retrieve each task's completion status from localStorage
       const isCompleted = localStorage.getItem(`laskut-task-${task}`) === 'True';
+      console.log("isCompleted: ", isCompleted)
+      console.log("task: ", task)
+      console.log(localStorage.getItem(`laskut-task-${task}`) === 'true')
+      
       completionStatus[`laskut-task-${task}`] = isCompleted;
     });
     setTaskCompletionStatus(completionStatus);
@@ -55,20 +60,15 @@ export default function Index() {
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-2 gap-4 p-4">
-      <Link
-          key="kulmia"
-          to="/kulmia"
-          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-kulmia'] ? "bg-green-200" : "bg-white shadow-xl"}`}
-        >
-          1
-        </Link>
+      {tasks.map((task, index) => (
         <Link
-          key="kulmia2"
-          to="/kulmia2"
-          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-kulmia2'] ? "bg-green-200" : "bg-white shadow-xl"}`}
+          key={task}
+          to={`/${task}`}
+          className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus[`laskut-task-${task}`] ? "bg-green-200" : "bg-white shadow-xl"}`}
         >
-          2
+          {index + 1}
         </Link>
+      ))}
       </div>
     </div>
   )
