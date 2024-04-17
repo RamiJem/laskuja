@@ -61,6 +61,11 @@ export default function Index() {
         >
           1
         </Link>
+        <Link
+          key="Ama3"
+          to="/Ama3"
+          className={"w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer bg-white shadow-xl"}
+          >Ama3</Link>
         {/* <Link
           key="1"
           to="/1"
