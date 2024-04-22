@@ -55,8 +55,8 @@ export default function Index() {
     <div className="flex justify-center">
       <div className="grid grid-cols-2 gap-4 p-4">
       <Link
-          key="muunnoksia"
-          to="/muunnoksia"
+          key="Fy1"
+          to="/Fy1"
           className={`w-24 h-24 flex items-center justify-center text-center border rounded-lg cursor-pointer ${taskCompletionStatus['laskut-task-muunnoksia'] ? "bg-green-200" : "bg-white shadow-xl"}`}
         >
           1
