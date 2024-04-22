@@ -46,13 +46,13 @@ export default function AngleQuestionPage() {
   }, [correctAnswers]); // Regenerate angle when a correct answer is given
 
   const generateNewAngle = () => {
-    const correctAngle = Math.floor(Math.random() * 180); // Generate a random angle between 0 and 180 degrees
+    const correctAngle = Math.floor(Math.random() * 360); // Generate a random angle between 0 and 180 degrees
     setCurrentAngle(correctAngle);
 
     let options = new Set<number>();
     options.add(correctAngle);
     while (options.size < 4) {
-      options.add(Math.floor(Math.random() * 180));
+      options.add(Math.floor(Math.random() * 360));
     }
     setAngleOptions(Array.from(options));
   };
@@ -69,7 +69,7 @@ export default function AngleQuestionPage() {
         }, 200)
       }
       if (correctAnswers + 1 === 25) {
-        localStorage.setItem('laskut-task-kulmia2', 'True');
+        localStorage.setItem('laskut-task-kulmia4', 'True');
       }
     } else {
         const button = document.getElementById(`angle-${selectedAngle}`);
@@ -90,10 +90,12 @@ export default function AngleQuestionPage() {
     const y2 = 100 - Math.sin(radians) * length; // Calculate y position of the end of the rotating line
 
     return (
-      <svg width="200" height="200">
+      <svg width="200" height="200" >
+        <g transform={`rotate(${Math.floor(Math.random() * 360)} 50 100)`}>
         <line x1="50" y1="100" x2="150" y2="100" stroke="black" strokeWidth="1" /> {/* Horizontal line */}
         <line x1="50" y1="100" x2={x2} y2={y2} stroke="black" strokeWidth="1" /> {/* Rotating line */}
         {drawArc(currentAngle)} {/* Call the new function to draw the arc */}
+        </g>
       </svg>
       
     );

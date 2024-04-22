@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
 
-const tasks = ["kulmia", "kulmia2"];
+const tasks = ["kulmia", "kulmia2", "kulmia3", "kulmia4"];
 
 export default function Index() {
   const [completedTasks, setCompletedTasks] = useState([]);
